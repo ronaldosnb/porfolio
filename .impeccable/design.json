@@ -1,0 +1,12 @@
+{
+  "northStar": "A bancada de sistemas após o expediente",
+  "breakpoints": { "mobile": "800px" },
+  "motion": {
+    "button": "200ms ease",
+    "systemMap": "requestAnimationFrame pulse; disabled for prefers-reduced-motion"
+  },
+  "rules": {
+    "signal": "Use Signal Lime only for action, focus, and live status.",
+    "pixels": "Use Pixelify Sans only for labels, status, and technical metadata."
+  }
+}
