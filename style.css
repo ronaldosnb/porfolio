@@ -236,15 +236,19 @@ h1 {
   border-color: var(--signal);
   color: var(--signal);
 }
-.hero-mark {
+.hero-photo {
   align-self: center;
-  display: flex;
-  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  justify-self: center;
+  max-width: 520px;
+  overflow: hidden;
+  width: 100%;
 }
-.hero-mark img {
+.hero-photo img {
+  display: block;
   height: auto;
-  max-width: 460px;
-  width: 78%;
+  width: 100%;
 }
 .section {
   margin: 0 auto;
@@ -513,7 +517,7 @@ h3 {
     min-height: auto;
     padding: 75px 0 72px;
   }
-  .hero-mark {
+  .hero-photo {
     display: none;
   }
   .hero-actions .button {

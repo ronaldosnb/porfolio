@@ -26,7 +26,7 @@ const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const revealItems = reducedMotion
   ? []
   : document.querySelectorAll(
-      ".hero-copy > *, .hero-mark, .section-heading, .project, .projects-toggle, .about-text > p, .about-figure, .site-footer > *",
+      ".hero-copy > *, .hero-photo, .section-heading, .project, .projects-toggle, .about-text > p, .about-figure, .site-footer > *",
     );
 revealItems.forEach((item) => item.classList.add("reveal"));
 
