@@ -19,7 +19,7 @@
   --type-caption: 0.78rem;
   --type-status: 0.67rem;
   --type-index: 1.05rem;
-  --type-wordmark: 1.25rem;
+  --type-wordmark: 1.55rem;
   --type-display: clamp(4.3rem, 9.3vw, 8.7rem);
   --type-role: clamp(1rem, 1.5vw, 1.35rem);
   --type-heading: clamp(2.5rem, 5vw, 5.35rem);
@@ -78,11 +78,23 @@ button:focus-visible {
   max-width: var(--wrap);
 }
 .wordmark {
+  align-items: center;
+  display: inline-flex;
+  color: var(--paper);
+  font-family: "Pixelify Sans", monospace;
   font-size: var(--type-wordmark);
-  font-weight: 700;
-  letter-spacing: -0.08em;
+  font-weight: 600;
+  height: 32px;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  transition: transform 0.2s ease;
 }
-.wordmark-dot,
+.wordmark:hover {
+  transform: translateY(-1px);
+}
+.wordmark span {
+  color: var(--signal);
+}
 .accent {
   color: var(--signal);
 }

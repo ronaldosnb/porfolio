@@ -7,6 +7,6 @@
   },
   "rules": {
     "signal": "Use Signal Lime only for action, focus, and live status.",
-    "pixels": "Use Pixelify Sans only for labels, status, and technical metadata."
+    "pixels": "Use Pixelify Sans only for labels, status, technical metadata, and the RB wordmark in the navigation."
   }
 }

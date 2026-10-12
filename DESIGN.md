@@ -43,6 +43,11 @@ typography:
     fontSize: "clamp(2rem, 3.5vw, 4.1rem)"
     fontWeight: 600
     lineHeight: 0.95
+  wordmark:
+    fontFamily: "Pixelify Sans, monospace"
+    fontSize: "1.55rem"
+    fontWeight: 600
+    lineHeight: 1
 rounded:
   sm: "10px"
   md: "16px"
@@ -80,9 +85,11 @@ O portfólio se comporta como uma bancada de trabalho digital: escura porque é 
 Neutros verdeados evitam o preto puro; o verde-sinal só marca ação, foco e estado ativo.
 
 ### Primary
+
 - **Signal Lime** (#B9FF63): CTA, foco, marcações e o cursor da visualização de sistemas.
 
 ### Neutral
+
 - **Workbench Ink** (#0B0D0C): fundo principal.
 - **Raised Panel** (#192019): superfícies de case e controles ativos.
 - **Paper Light** (#EEF2E9): texto principal.
@@ -113,26 +120,36 @@ Blocos são quase retos, com cantos de 10–16px. Chips são reservados a status
 ## Components
 
 ### Buttons
+
 - **Shape:** cantos de 10px.
 - **Primary:** Signal Lime sobre Signal Ink.
 - **Hover / Focus:** deslocamento vertical curto e foco visível em Signal Lime.
 
 ### Cards / Containers
+
 - **Corner Style:** 16px.
 - **Background:** Panel ou Panel Raised.
 - **Border:** linha de 1px em Line, sem sombra em repouso.
 
 ### Navigation
+
 - Links compactos e diretos; em telas pequenas, a navegação vira um acionador de menu acessível.
+
+### Wordmark
+
+- **Forma:** monograma textual “RB.” na face Pixelify Sans, com ponto em Signal Lime.
+- **Uso:** somente como assinatura de navegação; a referência pixelada é sutil, nunca uma identidade gamer completa.
 
 ## Do's and Don'ts
 
 ### Do:
+
 - **Do** manter o conteúdo e a interface legíveis antes de qualquer ornamento.
 - **Do** usar pixels em informação técnica, sinalização e transições pontuais.
 - **Do** mostrar casos com contexto e decisão, não apenas tecnologias.
 
 ### Don't:
+
 - **Don't** usar estética gamer, neon difuso ou grade decorativa genérica.
 - **Don't** transformar cada seção em uma coleção de cards iguais.
 - **Don't** usar verde-sinal para texto longo ou decoração.
