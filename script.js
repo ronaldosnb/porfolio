@@ -1,3 +1,111 @@
+// Entrada: os pixels da logo RB. entram de fora da tela e se juntam no centro.
+// Mesmo desenho de logo.svg (30 × 14); 1, 2 e 3 são os três tons do relevo.
+const loaderPixels = [
+  "..111111113....111111113......",
+  ".12222222223..12222222223.....",
+  "3333333333223.333333333223....",
+  "..........123..........123....",
+  "..13......123...13.....123....",
+  ".123......123..123....1223....",
+  ".123.....1223..1221111223.....",
+  ".12211111223...1223333223.....",
+  ".1222222223....123....3223....",
+  ".122333223.....123.....123....",
+  ".123...3223....123.....123....",
+  ".123....3223...12211111223..1.",
+  ".123.....3223..1222222223..123",
+  ".333......3333.333333333....3.",
+];
+const loaderTones = { 1: "#f8fafc", 2: "#cbd2dc", 3: "#7c8594" };
+
+const loader = document.querySelector(".loader");
+
+const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// Conteúdo que entra aos poucos conforme a página rola.
+const revealItems = reducedMotion
+  ? []
+  : document.querySelectorAll(
+      ".hero-copy > *, .hero-photo, .section-heading, .project, .projects-toggle, .about-text > p, .about-figure, .site-footer > *",
+    );
+revealItems.forEach((item) => item.classList.add("reveal"));
+
+const revealObserver = new IntersectionObserver(
+  (entries) =>
+    entries
+      .filter((entry) => {
+        // O que já ficou acima da tela (ex.: recarregar no meio da página) aparece direto.
+        if (!entry.isIntersecting && entry.boundingClientRect.bottom < 0) {
+          revealObserver.unobserve(entry.target);
+          entry.target.classList.remove("reveal");
+        }
+        return entry.isIntersecting;
+      })
+      .forEach(({ target }, index) => {
+        revealObserver.unobserve(target);
+        // Itens que entram juntos na tela aparecem em sequência.
+        target.style.transitionDelay = `${index * 90}ms`;
+        target.classList.add("is-visible");
+        target.addEventListener("transitionend", function done(event) {
+          if (event.target !== target || event.propertyName !== "opacity") return;
+          target.removeEventListener("transitionend", done);
+          target.classList.remove("reveal", "is-visible");
+          target.style.transitionDelay = "";
+        });
+      }),
+  { rootMargin: "0px 0px -8% 0px", threshold: 0.15 },
+);
+
+const revealContent = () =>
+  revealItems.forEach((item) => revealObserver.observe(item));
+
+if (loader && !reducedMotion) {
+  const mark = loader.querySelector(".loader-mark");
+  const { innerWidth: vw, innerHeight: vh } = window;
+  // Tamanho inteiro por pixel, para não abrir frestas entre os quadrados.
+  const px = Math.max(3, Math.floor(Math.min(vw * 0.6, 420) / 30));
+  mark.style.setProperty("--px", `${px}px`);
+
+  loaderPixels.forEach((row, y) =>
+    [...row].forEach((tone, x) => {
+      if (tone === ".") return;
+      const pixel = document.createElement("span");
+      pixel.style.background = loaderTones[tone];
+      pixel.style.left = `${x * px}px`;
+      pixel.style.top = `${y * px}px`;
+      mark.append(pixel);
+
+      // Ponto de partida fora da tela, em direção aleatória, alinhado à grade.
+      const angle = Math.random() * Math.PI * 2;
+      const reach = Math.hypot(vw, vh) * (0.55 + Math.random() * 0.35);
+      const homeX = (x - 15) * px;
+      const homeY = (y - 7) * px;
+      const dx = Math.round((Math.cos(angle) * reach - homeX) / px) * px;
+      const dy = Math.round((Math.sin(angle) * reach - homeY) / px) * px;
+
+      pixel.animate(
+        [
+          { transform: `translate(${dx}px, ${dy}px)` },
+          { transform: "translate(0, 0)" },
+        ],
+        {
+          duration: 1100,
+          delay: Math.random() * 500,
+          easing: "cubic-bezier(0.2, 0.7, 0.2, 1)",
+          fill: "backwards",
+        },
+      );
+    }),
+  );
+
+  // O conteúdo começa a entrar junto com a saída do loader.
+  loader.addEventListener("animationstart", revealContent);
+  loader.addEventListener("animationend", () => loader.remove());
+} else {
+  loader?.remove();
+  revealContent();
+}
+
 const toggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".site-nav");
 
@@ -17,77 +125,68 @@ nav?.querySelectorAll("a").forEach((link) =>
 
 document.querySelector("#year").textContent = new Date().getFullYear();
 
-const canvas = document.querySelector("#system-canvas");
-const reduceMotion = window.matchMedia(
-  "(prefers-reduced-motion: reduce)",
-).matches;
+const sections = document.querySelectorAll(".section");
 
-if (canvas) {
-  const ctx = canvas.getContext("2d");
-  let width = 0,
-    height = 0,
-    phase = 0;
-  const points = [
-    [0.18, 0.39],
-    [0.45, 0.52],   
-    [0.71, 0.34],
-    [0.71, 0.66],
-    [0.93, 0.51],
-  ];
+const centerSections = () =>
+  sections.forEach((section) => {
+    const gap = (window.innerHeight - section.offsetHeight) / 2;
+    section.style.scrollMarginTop = `${Math.max(0, gap)}px`;
+  });
 
-  const draw = () => {
-    const ratio = window.devicePixelRatio || 1;
-    const box = canvas.getBoundingClientRect();
-    if (box.width !== width || box.height !== height) {
-      width = box.width;
-      height = box.height;
-      canvas.width = width * ratio;
-      canvas.height = height * ratio;
-      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+const sectionObserver = new ResizeObserver(centerSections);
+sections.forEach((section) => sectionObserver.observe(section));
+window.addEventListener("resize", centerSections);
+
+const projectsToggle = document.querySelector(".projects-toggle");
+const moreProjects = document.querySelector("#mais-projetos");
+
+if (projectsToggle && moreProjects) {
+  moreProjects.hidden = true;
+  projectsToggle.hidden = false;
+
+  projectsToggle.addEventListener("click", () => {
+    const expanded = moreProjects.hidden;
+    moreProjects.hidden = !expanded;
+    projectsToggle.setAttribute("aria-expanded", String(expanded));
+    projectsToggle.querySelector(".projects-toggle-label").textContent = expanded
+      ? "Ver menos projetos"
+      : "Ver mais projetos";
+    projectsToggle.querySelector(".projects-toggle-icon").textContent = expanded
+      ? "−"
+      : "+";
+
+    if (expanded) {
+      const first = moreProjects.querySelector("article");
+      first?.setAttribute("tabindex", "-1");
+      first?.focus({ preventScroll: true });
     }
-    ctx.clearRect(0, 0, width, height);
-    ctx.strokeStyle = "rgba(170, 179, 167, .16)";
-    ctx.lineWidth = 1;
-    for (let x = 34; x < width; x += 34) {
-      ctx.beginPath();
-      ctx.moveTo(x, 44);
-      ctx.lineTo(x, height);
-      ctx.stroke();
+  });
+}
+
+const copyEmail = document.querySelector(".copy-email");
+
+if (copyEmail && navigator.clipboard) {
+  const label = copyEmail.textContent.trim();
+  copyEmail.hidden = false;
+
+  copyEmail.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(copyEmail.dataset.email);
+      copyEmail.textContent = "Copiado";
+    } catch {
+      copyEmail.textContent = "Não foi possível copiar";
     }
-    for (let y = 70; y < height; y += 34) {
-      ctx.beginPath();
-      ctx.moveTo(0, y);
-      ctx.lineTo(width, y);
-      ctx.stroke();
-    }
-    const p = points.map(([x, y]) => [x * width, y * height]);
-    const links = [
-      [0, 1],
-      [1, 2],
-      [1, 3],
-      [2, 4],
-      [3, 4],
-    ];
-    ctx.lineWidth = 1.5;
-    links.forEach(([a, b], index) => {
-      ctx.strokeStyle =
-        index === 1 ? "rgba(185,255,99,.62)" : "rgba(170,179,167,.45)";
-      ctx.beginPath();
-      ctx.moveTo(...p[a]);
-      ctx.lineTo(...p[b]);
-      ctx.stroke();
-    });
-    const pulseLink = links[1];
-    const start = p[pulseLink[0]],
-      end = p[pulseLink[1]];
-    const t = (Math.sin(phase) + 1) / 2;
-    const x = start[0] + (end[0] - start[0]) * t,
-      y = start[1] + (end[1] - start[1]) * t;
-    ctx.fillStyle = "#b9ff63";
-    ctx.fillRect(x - 3, y - 3, 6, 6);
-    phase += 0.035;
-    if (!reduceMotion) requestAnimationFrame(draw);
-  };
-  window.addEventListener("resize", draw);
-  draw();
+    setTimeout(() => (copyEmail.textContent = label), 2000);
+  });
+}
+
+// Link público do currículo (PDF). Enquanto estiver vazio, os links ficam inativos.
+const curriculoUrl = "";
+
+if (curriculoUrl) {
+  document.querySelectorAll(".cv-link").forEach((link) => {
+    link.href = curriculoUrl;
+    link.target = "_blank";
+    link.rel = "noreferrer";
+  });
 }
