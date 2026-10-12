@@ -54,3 +54,31 @@ if (projectsToggle && moreProjects) {
     }
   });
 }
+
+const copyEmail = document.querySelector(".copy-email");
+
+if (copyEmail && navigator.clipboard) {
+  const label = copyEmail.textContent.trim();
+  copyEmail.hidden = false;
+
+  copyEmail.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(copyEmail.dataset.email);
+      copyEmail.textContent = "Copiado";
+    } catch {
+      copyEmail.textContent = "Não foi possível copiar";
+    }
+    setTimeout(() => (copyEmail.textContent = label), 2000);
+  });
+}
+
+// Link público do currículo (PDF). Enquanto estiver vazio, os links ficam inativos.
+const curriculoUrl = "";
+
+if (curriculoUrl) {
+  document.querySelectorAll(".cv-link").forEach((link) => {
+    link.href = curriculoUrl;
+    link.target = "_blank";
+    link.rel = "noreferrer";
+  });
+}

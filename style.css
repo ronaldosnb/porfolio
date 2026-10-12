@@ -361,10 +361,25 @@ h3 {
 }
 .site-footer .kicker {
   color: color-mix(in srgb, var(--signal-ink) 76%, var(--signal));
+  font-family: inherit;
+  font-size: var(--type-nav);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 .site-footer h2 {
-  max-width: 9ch;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
   margin: 20px 0 36px;
+}
+.site-footer a:focus-visible,
+.site-footer button:focus-visible {
+  outline-color: var(--signal-ink);
+}
+.footer-contact {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 28px;
 }
 .footer-email {
   border-bottom: 2px solid var(--signal-ink);
@@ -375,21 +390,41 @@ h3 {
 .footer-email:hover {
   opacity: 0.65;
 }
+.copy-email {
+  background: none;
+  border: 1px solid var(--signal-ink);
+  color: var(--signal-ink);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--type-small);
+  font-weight: 600;
+  padding: 10px 14px;
+}
+.copy-email[hidden] {
+  display: none;
+}
+.copy-email:hover {
+  background: var(--signal-ink);
+  color: var(--signal);
+}
+.footer-links {
+  display: flex;
+  font-weight: 600;
+  gap: 28px;
+  margin-top: 32px;
+}
+.footer-links a {
+  border-bottom: 1px solid var(--signal-ink);
+  padding-bottom: 3px;
+}
+.footer-links a:hover {
+  opacity: 0.65;
+}
 .footer-meta {
   border-top: 1px solid color-mix(in srgb, var(--signal-ink) 35%, transparent);
-  display: flex;
   font-size: var(--type-small);
-  justify-content: space-between;
   margin-top: 96px;
   padding-top: 16px;
-}
-.footer-meta div {
-  display: flex;
-  gap: 20px;
-}
-.footer-meta a {
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 @media (max-width: 800px) {
   :root {
@@ -466,9 +501,6 @@ h3 {
     padding-right: 20px;
   }
   .footer-meta {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 12px;
     margin-top: 70px;
   }
   .hero-role {
