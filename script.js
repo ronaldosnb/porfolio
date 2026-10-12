@@ -16,3 +16,29 @@ nav?.querySelectorAll("a").forEach((link) =>
 );
 
 document.querySelector("#year").textContent = new Date().getFullYear();
+
+const projectsToggle = document.querySelector(".projects-toggle");
+const moreProjects = document.querySelector("#mais-projetos");
+
+if (projectsToggle && moreProjects) {
+  moreProjects.hidden = true;
+  projectsToggle.hidden = false;
+
+  projectsToggle.addEventListener("click", () => {
+    const expanded = moreProjects.hidden;
+    moreProjects.hidden = !expanded;
+    projectsToggle.setAttribute("aria-expanded", String(expanded));
+    projectsToggle.querySelector(".projects-toggle-label").textContent = expanded
+      ? "Ver menos projetos"
+      : "Ver mais projetos";
+    projectsToggle.querySelector(".projects-toggle-icon").textContent = expanded
+      ? "−"
+      : "+";
+
+    if (expanded) {
+      const first = moreProjects.querySelector("article");
+      first?.setAttribute("tabindex", "-1");
+      first?.focus({ preventScroll: true });
+    }
+  });
+}

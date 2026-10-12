@@ -95,75 +95,87 @@
         aria-labelledby="projects-title"
       >
         <div class="section-heading">
-          <p class="kicker">Trabalho selecionado</p>
-          <h2 id="projects-title">
-            Projetos que pediram mais do que uma interface.
-          </h2>
+          <h2 id="projects-title">Projetos.</h2>
         </div>
 
-        <article class="project project-featured">
-          <div class="project-index">01</div>
-          <div class="project-main">
-            <p class="project-type">
-              Projeto entregue <span class="status-tag">Online</span>
+        <div class="project-list">
+          <article class="project">
+            <div class="project-index">01</div>
+            <div class="project-main">
+              <p class="project-type">
+                Site institucional <span class="status-tag">Online</span>
+              </p>
+              <h3>Prime Assessoria Contábil</h3>
+            </div>
+            <p class="project-summary">
+              Site institucional para um escritório de contabilidade, feito
+              para comunicar confiança e profissionalismo.
             </p>
-            <h3>Prime Assessoria Contábil</h3>
-            <p>
-              Site institucional para um escritório de contabilidade — uma
-              presença digital feita para comunicar confiança e
-              profissionalismo.
-            </p>
-            <a
-              class="project-link"
-              href="https://www.prime-assessoriacontabil.com/"
-              target="_blank"
-              rel="noreferrer"
-              >Visitar site <span aria-hidden="true">↗</span></a
-            >
-          </div>
-          <div class="project-mark prime-mark" aria-hidden="true">
-            <span>PRIME</span><small>assessoria contábil</small>
-          </div>
-        </article>
-
-        <article class="project project-pending">
-          <div class="project-index">02</div>
-          <div class="project-main">
-            <p class="project-type">
-              SaaS próprio <span class="status-tag muted-tag">Em breve</span>
-            </p>
-            <h3>DAS-FLOW</h3>
-            <p>
-              Um produto em preparação para hospedagem. Este espaço será
-              atualizado com a demonstração e o contexto do projeto assim que
-              estiver público.
-            </p>
-          </div>
-          <div class="pending-signal" aria-label="DAS-FLOW em breve">
-            <span></span><span></span><span></span><span></span
-            ><b>EM<br />BREVE</b>
-          </div>
-        </article>
-
-        <div class="project-pair">
-          <article class="project project-compact">
-            <div class="project-index">03</div>
-            <p class="project-type">TCC · Desenvolvimento de Sistemas</p>
-            <h3>Gerenciamento de patrimônio</h3>
-            <p>
-              Projeto de conclusão voltado ao domínio de gestão patrimonial.
-            </p>
+            <div class="project-action">
+              <a
+                class="project-link"
+                href="https://www.prime-assessoriacontabil.com/"
+                target="_blank"
+                rel="noreferrer"
+                >Visitar site <span aria-hidden="true">↗</span></a
+              >
+            </div>
           </article>
-          <article class="project project-compact">
+
+          <article class="project">
+            <div class="project-index">02</div>
+            <div class="project-main">
+              <p class="project-type">
+                SaaS próprio <span class="status-tag muted-tag">Em breve</span>
+              </p>
+              <h3>DAS-FLOW</h3>
+            </div>
+            <p class="project-summary">
+              Produto próprio em preparação para hospedagem. A demonstração
+              entra aqui assim que estiver pública.
+            </p>
+            <div class="project-action"></div>
+          </article>
+
+          <article class="project">
+            <div class="project-index">03</div>
+            <div class="project-main">
+              <p class="project-type">TCC · Desenvolvimento de Sistemas</p>
+              <h3>Gerenciamento de patrimônio</h3>
+            </div>
+            <p class="project-summary">
+              Sistema de gestão patrimonial, desenvolvido como projeto de
+              conclusão de curso.
+            </p>
+            <div class="project-action"></div>
+          </article>
+        </div>
+
+        <div class="project-list project-more" id="mais-projetos">
+          <article class="project">
             <div class="project-index">04</div>
-            <p class="project-type">Projeto acadêmico</p>
-            <h3>Análise vibratória</h3>
-            <p>
+            <div class="project-main">
+              <p class="project-type">Projeto acadêmico</p>
+              <h3>Análise vibratória</h3>
+            </div>
+            <p class="project-summary">
               Aplicação universitária criada para investigar e organizar dados
               de análise vibratória.
             </p>
+            <div class="project-action"></div>
           </article>
         </div>
+
+        <button
+          class="projects-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mais-projetos"
+          hidden
+        >
+          <span class="projects-toggle-label">Ver mais projetos</span>
+          <span class="projects-toggle-icon" aria-hidden="true">+</span>
+        </button>
       </section>
 
       <section id="sobre" class="about section" aria-labelledby="about-title">

@@ -40,9 +40,9 @@ typography:
     lineHeight: 0.96
   project:
     fontFamily: "Onest, Arial, sans-serif"
-    fontSize: "clamp(2rem, 3.5vw, 4.1rem)"
+    fontSize: "clamp(1.5rem, 2.3vw, 2.1rem)"
     fontWeight: 600
-    lineHeight: 0.95
+    lineHeight: 1.08
 rounded:
   sm: "10px"
   md: "16px"
@@ -120,11 +120,12 @@ Blocos são quase retos, com cantos de 10–16px. Chips são reservados a status
 - **Primary:** Signal Cyan sobre Signal Ink.
 - **Hover / Focus:** deslocamento vertical curto e foco visível em Signal Cyan.
 
-### Cards / Containers
+### Linha de projeto
 
-- **Corner Style:** 16px.
-- **Background:** Panel ou Panel Raised.
-- **Border:** linha de 1px em Line, sem sombra em repouso.
+- **Estrutura:** grade de quatro colunas (índice, tipo com nome, descrição, link), igual para todos os projetos, separada por linhas de 1px em Line.
+- **Status:** tag opcional ao lado do tipo (“Online” em Signal Cyan, “Em breve” em cinza).
+- **Lista:** três projetos principais visíveis; os demais ficam atrás do botão “Ver mais projetos”, que os expande na própria seção.
+- **Botão de expandir:** contorno de 1px em Line, sem fundo; hover em Signal Cyan.
 
 ### Navigation
 
