@@ -24,9 +24,9 @@ O visitante explora uma página de portfólio, conhece projetos selecionados, ac
 
 ## Capabilities and Constraints
 
-- Projetos a apresentar: site para escritório de contabilidade; SaaS próprios para escritório; sistema de gerenciamento de patrimônio criado como TCC de Desenvolvimento de Sistemas; projeto universitário de análise vibratória.
+- Projetos a apresentar: site para escritório de contabilidade; SaaS próprios para escritório; FinBot, bot financeiro de WhatsApp (`https://github.com/ronaldosnb/fin_bot`); projeto universitário de análise vibratória.
 - Links públicos confirmados: site da Prime Assessoria Contábil (`https://www.prime-assessoriacontabil.com/`), GitHub (`https://github.com/ronaldosnb`) e LinkedIn (`https://www.linkedin.com/in/ronaldosnb/`).
-- DAS-FLOW ainda será hospedado; reservar uma área de case com estado “em breve”, sem inventar URL, métricas ou funcionalidades não confirmadas.
+- DAS-FLOW está publicado em `https://dasdireto.com/`; não inventar métricas ou funcionalidades não confirmadas.
 - Contato principal confirmado: `ronaldosnbatista@gmail.com`, usado por CTA de e-mail. LinkedIn e GitHub são canais secundários.
 
 ## Brand Commitments
