@@ -102,7 +102,7 @@ O texto é humano e direto; a face pixelada é reservada a coordenadas, rótulos
 
 ## Layout
 
-O primeiro viewport é uma composição de nome em grande escala e um mapa de sistema ativo, não um hero convencional. A grade usa uma coluna de informação estreita e uma área ampla para trabalho; no celular ela vira uma sequência única com a visualização preservada.
+O primeiro viewport é uma composição de nome em grande escala e a logo “RB.” em pixels em tamanho grande, não um hero convencional. A grade usa uma coluna de informação estreita e uma área ampla para trabalho; no celular ela vira uma sequência única e a logo grande é ocultada, ficando só a da navbar.
 
 ## Elevation & Depth
 
