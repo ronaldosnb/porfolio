@@ -1,12 +1,12 @@
 :root {
-  --ink: #0b0d0c;
-  --panel: #121613;
-  --panel-raised: #192019;
-  --paper: #eef2e9;
-  --muted: #aab3a7;
-  --signal: #b9ff63;
-  --signal-ink: #15210b;
-  --line: #354035;
+  --ink: #0b0d12;
+  --panel: #11141b;
+  --panel-raised: #181c25;
+  --paper: #eef2f6;
+  --muted: #a3abb8;
+  --signal: #38d6f5;
+  --signal-ink: #06202a;
+  --line: #2c3442;
   --wrap: min(1420px, calc(100% - 64px));
   --type-micro: 0.61rem;
   --type-tiny: 0.72rem;
@@ -19,7 +19,6 @@
   --type-caption: 0.78rem;
   --type-status: 0.67rem;
   --type-index: 1.05rem;
-  --type-wordmark: 1.55rem;
   --type-display: clamp(4.3rem, 9.3vw, 8.7rem);
   --type-role: clamp(1rem, 1.5vw, 1.35rem);
   --type-heading: clamp(2.5rem, 5vw, 5.35rem);
@@ -28,7 +27,7 @@
   --type-project-compact: clamp(1.75rem, 3vw, 3rem);
   --type-about: clamp(1.12rem, 1.8vw, 1.5rem);
   --type-email: clamp(1.25rem, 2.5vw, 2.3rem);
-  --signal-shadow: #5f8034;
+  --signal-shadow: #1b7f95;
 }
 * {
   box-sizing: border-box;
@@ -80,20 +79,16 @@ button:focus-visible {
 .wordmark {
   align-items: center;
   display: inline-flex;
-  color: var(--paper);
-  font-family: "Pixelify Sans", monospace;
-  font-size: var(--type-wordmark);
-  font-weight: 600;
   height: 32px;
-  letter-spacing: -0.06em;
-  line-height: 1;
   transition: transform 0.2s ease;
 }
 .wordmark:hover {
   transform: translateY(-1px);
 }
-.wordmark span {
-  color: var(--signal);
+.wordmark img {
+  display: block;
+  height: 28px;
+  width: auto;
 }
 .accent {
   color: var(--signal);
@@ -222,7 +217,7 @@ h1 {
 .system-map {
   align-self: center;
   background:
-    radial-gradient(circle at 70% 50%, #1b2419 0, transparent 46%), var(--panel);
+    radial-gradient(circle at 70% 50%, #182230 0, transparent 46%), var(--panel);
   border: 1px solid var(--line);
   min-height: 510px;
   overflow: hidden;
@@ -388,7 +383,7 @@ h3 {
   text-transform: uppercase;
 }
 .project-pending {
-  background: linear-gradient(105deg, transparent, #121613);
+  background: linear-gradient(105deg, transparent, var(--panel));
 }
 .pending-signal {
   align-items: center;

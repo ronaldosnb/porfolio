@@ -46,7 +46,7 @@ if (canvas) {
       ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
     }
     ctx.clearRect(0, 0, width, height);
-    ctx.strokeStyle = "rgba(170, 179, 167, .16)";
+    ctx.strokeStyle = "rgba(163, 171, 184, .16)";
     ctx.lineWidth = 1;
     for (let x = 34; x < width; x += 34) {
       ctx.beginPath();
@@ -71,7 +71,7 @@ if (canvas) {
     ctx.lineWidth = 1.5;
     links.forEach(([a, b], index) => {
       ctx.strokeStyle =
-        index === 1 ? "rgba(185,255,99,.62)" : "rgba(170,179,167,.45)";
+        index === 1 ? "rgba(56,214,245,.62)" : "rgba(163,171,184,.45)";
       ctx.beginPath();
       ctx.moveTo(...p[a]);
       ctx.lineTo(...p[b]);
@@ -83,7 +83,7 @@ if (canvas) {
     const t = (Math.sin(phase) + 1) / 2;
     const x = start[0] + (end[0] - start[0]) * t,
       y = start[1] + (end[1] - start[1]) * t;
-    ctx.fillStyle = "#b9ff63";
+    ctx.fillStyle = "#38d6f5";
     ctx.fillRect(x - 3, y - 3, 6, 6);
     phase += 0.035;
     if (!reduceMotion) requestAnimationFrame(draw);

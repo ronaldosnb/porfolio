@@ -2,15 +2,15 @@
 name: Ronaldo Batista Portfolio
 description: Portfólio de um desenvolvedor full-stack que transforma operações complexas em sistemas claros.
 colors:
-  ink: "#0b0d0c"
-  panel: "#121613"
-  panel-raised: "#192019"
-  paper: "#eef2e9"
-  muted: "#aab3a7"
-  signal: "#b9ff63"
-  signal-ink: "#15210b"
-  signal-shadow: "#5f8034"
-  line: "#354035"
+  ink: "#0b0d12"
+  panel: "#11141b"
+  panel-raised: "#181c25"
+  paper: "#eef2f6"
+  muted: "#a3abb8"
+  signal: "#38d6f5"
+  signal-ink: "#06202a"
+  signal-shadow: "#1b7f95"
+  line: "#2c3442"
 typography:
   display:
     fontFamily: "Onest, Arial, sans-serif"
@@ -43,11 +43,6 @@ typography:
     fontSize: "clamp(2rem, 3.5vw, 4.1rem)"
     fontWeight: 600
     lineHeight: 0.95
-  wordmark:
-    fontFamily: "Pixelify Sans, monospace"
-    fontSize: "1.55rem"
-    fontWeight: 600
-    lineHeight: 1
 rounded:
   sm: "10px"
   md: "16px"
@@ -78,24 +73,24 @@ components:
 
 O portfólio se comporta como uma bancada de trabalho digital: escura porque é vista no notebook à noite, precisa porque mostra sistemas e não adereços. A tipografia ampla dá clareza editorial; pixels aparecem somente onde existe sinal, estado ou medição, como uma assinatura do ofício.
 
-**Key Characteristics:** contraste calmo, superfícies planas, verde-sinal raro, estrutura assimétrica e detalhes pixelados funcionais.
+**Key Characteristics:** contraste calmo, superfícies planas, ciano-sinal raro, estrutura assimétrica e detalhes pixelados funcionais.
 
 ## Colors
 
-Neutros verdeados evitam o preto puro; o verde-sinal só marca ação, foco e estado ativo.
+Neutros azulados evitam o preto puro; o ciano-sinal só marca ação, foco e estado ativo.
 
 ### Primary
 
-- **Signal Lime** (#B9FF63): CTA, foco, marcações e o cursor da visualização de sistemas.
+- **Signal Cyan** (#38D6F5): CTA, foco, marcações e o cursor da visualização de sistemas.
 
 ### Neutral
 
-- **Workbench Ink** (#0B0D0C): fundo principal.
-- **Raised Panel** (#192019): superfícies de case e controles ativos.
-- **Paper Light** (#EEF2E9): texto principal.
-- **Soft Readout** (#AAB3A7): texto de apoio.
+- **Workbench Ink** (#0B0D12): fundo principal.
+- **Raised Panel** (#181C25): superfícies de case e controles ativos.
+- **Paper Light** (#EEF2F6): texto principal.
+- **Soft Readout** (#A3ABB8): texto de apoio.
 
-**The Signal Rule.** Verde-sinal não decora: só indica o próximo passo ou um estado vivo.
+**The Signal Rule.** Ciano-sinal não decora: só indica o próximo passo ou um estado vivo.
 
 ## Typography
 
@@ -122,8 +117,8 @@ Blocos são quase retos, com cantos de 10–16px. Chips são reservados a status
 ### Buttons
 
 - **Shape:** cantos de 10px.
-- **Primary:** Signal Lime sobre Signal Ink.
-- **Hover / Focus:** deslocamento vertical curto e foco visível em Signal Lime.
+- **Primary:** Signal Cyan sobre Signal Ink.
+- **Hover / Focus:** deslocamento vertical curto e foco visível em Signal Cyan.
 
 ### Cards / Containers
 
@@ -137,7 +132,7 @@ Blocos são quase retos, com cantos de 10–16px. Chips são reservados a status
 
 ### Wordmark
 
-- **Forma:** monograma textual “RB.” na face Pixelify Sans, com ponto em Signal Lime.
+- **Forma:** monograma “RB.” desenhado em grade de pixels (`logo.svg`, 30 × 14), monocromático, com relevo em três tons do neutro azulado (#F8FAFC, #CBD2DC, #7C8594). Exibido com 28px de altura.
 - **Uso:** somente como assinatura de navegação; a referência pixelada é sutil, nunca uma identidade gamer completa.
 
 ## Do's and Don'ts
@@ -152,4 +147,4 @@ Blocos são quase retos, com cantos de 10–16px. Chips são reservados a status
 
 - **Don't** usar estética gamer, neon difuso ou grade decorativa genérica.
 - **Don't** transformar cada seção em uma coleção de cards iguais.
-- **Don't** usar verde-sinal para texto longo ou decoração.
+- **Don't** usar ciano-sinal para texto longo ou decoração.

@@ -6,7 +6,7 @@
     "systemMap": "requestAnimationFrame pulse; disabled for prefers-reduced-motion"
   },
   "rules": {
-    "signal": "Use Signal Lime only for action, focus, and live status.",
-    "pixels": "Use Pixelify Sans only for labels, status, technical metadata, and the RB wordmark in the navigation."
+    "signal": "Use Signal Cyan only for action, focus, and live status.",
+    "pixels": "Use Pixelify Sans only for labels, status, and technical metadata. The RB wordmark in the navigation is the pixel-grid logo.svg, monochrome."
   }
 }
