@@ -7,6 +7,6 @@
   },
   "rules": {
     "signal": "Use Signal Cyan only for action, focus, and live status.",
-    "pixels": "Use Pixelify Sans only for labels, status, and technical metadata. The RB wordmark in the navigation is the pixel-grid logo.svg, monochrome."
+    "pixels": "Use Pixelify Sans only for labels, status, and technical metadata. The RB wordmark in the navigation is the pixel-grid assets/img/logo.svg, monochrome."
   }
 }
