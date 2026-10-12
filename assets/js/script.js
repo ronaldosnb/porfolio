@@ -1,5 +1,5 @@
 // Entrada: os pixels da logo RB. entram de fora da tela e se juntam no centro.
-// Mesmo desenho de logo.svg (30 × 14); 1, 2 e 3 são os três tons do relevo.
+// Mesmo desenho de assets/img/logo.svg (30 × 14); 1, 2 e 3 são os três tons do relevo.
 const loaderPixels = [
   "..111111113....111111113......",
   ".12222222223..12222222223.....",

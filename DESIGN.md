@@ -133,7 +133,7 @@ Blocos são quase retos, com cantos de 10–16px. Chips são reservados a status
 
 ### Wordmark
 
-- **Forma:** monograma “RB.” desenhado em grade de pixels (`logo.svg`, 30 × 14), monocromático, com relevo em três tons do neutro azulado (#F8FAFC, #CBD2DC, #7C8594). Exibido com 28px de altura.
+- **Forma:** monograma “RB.” desenhado em grade de pixels (`assets/img/logo.svg`, 30 × 14), monocromático, com relevo em três tons do neutro azulado (#F8FAFC, #CBD2DC, #7C8594). Exibido com 28px de altura.
 - **Uso:** somente como assinatura de navegação; a referência pixelada é sutil, nunca uma identidade gamer completa.
 
 ## Do's and Don'ts
