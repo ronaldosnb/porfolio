@@ -63,6 +63,32 @@ button:focus-visible {
 .skip-link:focus {
   top: 12px;
 }
+.loader {
+  animation: loader-exit 0.45s ease 1.9s forwards;
+  background: var(--ink);
+  display: grid;
+  inset: 0;
+  overflow: hidden;
+  place-items: center;
+  position: fixed;
+  z-index: 20;
+}
+.loader-mark {
+  height: calc(var(--px) * 14);
+  position: relative;
+  width: calc(var(--px) * 30);
+}
+.loader-mark span {
+  height: var(--px);
+  position: absolute;
+  width: var(--px);
+}
+@keyframes loader-exit {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
 .site-header {
   align-items: center;
   border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
@@ -527,6 +553,9 @@ h3 {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .loader {
+    display: none;
   }
   .button,
   .projects-toggle {

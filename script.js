@@ -1,3 +1,69 @@
+// Entrada: os pixels da logo RB. entram de fora da tela e se juntam no centro.
+// Mesmo desenho de logo.svg (30 × 14); 1, 2 e 3 são os três tons do relevo.
+const loaderPixels = [
+  "..111111113....111111113......",
+  ".12222222223..12222222223.....",
+  "3333333333223.333333333223....",
+  "..........123..........123....",
+  "..13......123...13.....123....",
+  ".123......123..123....1223....",
+  ".123.....1223..1221111223.....",
+  ".12211111223...1223333223.....",
+  ".1222222223....123....3223....",
+  ".122333223.....123.....123....",
+  ".123...3223....123.....123....",
+  ".123....3223...12211111223..1.",
+  ".123.....3223..1222222223..123",
+  ".333......3333.333333333....3.",
+];
+const loaderTones = { 1: "#f8fafc", 2: "#cbd2dc", 3: "#7c8594" };
+
+const loader = document.querySelector(".loader");
+
+if (loader && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const mark = loader.querySelector(".loader-mark");
+  const { innerWidth: vw, innerHeight: vh } = window;
+  // Tamanho inteiro por pixel, para não abrir frestas entre os quadrados.
+  const px = Math.max(3, Math.floor(Math.min(vw * 0.6, 420) / 30));
+  mark.style.setProperty("--px", `${px}px`);
+
+  loaderPixels.forEach((row, y) =>
+    [...row].forEach((tone, x) => {
+      if (tone === ".") return;
+      const pixel = document.createElement("span");
+      pixel.style.background = loaderTones[tone];
+      pixel.style.left = `${x * px}px`;
+      pixel.style.top = `${y * px}px`;
+      mark.append(pixel);
+
+      // Ponto de partida fora da tela, em direção aleatória, alinhado à grade.
+      const angle = Math.random() * Math.PI * 2;
+      const reach = Math.hypot(vw, vh) * (0.55 + Math.random() * 0.35);
+      const homeX = (x - 15) * px;
+      const homeY = (y - 7) * px;
+      const dx = Math.round((Math.cos(angle) * reach - homeX) / px) * px;
+      const dy = Math.round((Math.sin(angle) * reach - homeY) / px) * px;
+
+      pixel.animate(
+        [
+          { transform: `translate(${dx}px, ${dy}px)` },
+          { transform: "translate(0, 0)" },
+        ],
+        {
+          duration: 1100,
+          delay: Math.random() * 500,
+          easing: "cubic-bezier(0.2, 0.7, 0.2, 1)",
+          fill: "backwards",
+        },
+      );
+    }),
+  );
+
+  loader.addEventListener("animationend", () => loader.remove());
+} else {
+  loader?.remove();
+}
+
 const toggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".site-nav");
 
