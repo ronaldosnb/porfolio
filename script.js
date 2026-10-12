@@ -20,7 +20,46 @@ const loaderTones = { 1: "#f8fafc", 2: "#cbd2dc", 3: "#7c8594" };
 
 const loader = document.querySelector(".loader");
 
-if (loader && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// Conteúdo que entra aos poucos conforme a página rola.
+const revealItems = reducedMotion
+  ? []
+  : document.querySelectorAll(
+      ".hero-copy > *, .hero-mark, .section-heading, .project, .projects-toggle, .about-text > p, .about-figure, .site-footer > *",
+    );
+revealItems.forEach((item) => item.classList.add("reveal"));
+
+const revealObserver = new IntersectionObserver(
+  (entries) =>
+    entries
+      .filter((entry) => {
+        // O que já ficou acima da tela (ex.: recarregar no meio da página) aparece direto.
+        if (!entry.isIntersecting && entry.boundingClientRect.bottom < 0) {
+          revealObserver.unobserve(entry.target);
+          entry.target.classList.remove("reveal");
+        }
+        return entry.isIntersecting;
+      })
+      .forEach(({ target }, index) => {
+        revealObserver.unobserve(target);
+        // Itens que entram juntos na tela aparecem em sequência.
+        target.style.transitionDelay = `${index * 90}ms`;
+        target.classList.add("is-visible");
+        target.addEventListener("transitionend", function done(event) {
+          if (event.target !== target || event.propertyName !== "opacity") return;
+          target.removeEventListener("transitionend", done);
+          target.classList.remove("reveal", "is-visible");
+          target.style.transitionDelay = "";
+        });
+      }),
+  { rootMargin: "0px 0px -8% 0px", threshold: 0.15 },
+);
+
+const revealContent = () =>
+  revealItems.forEach((item) => revealObserver.observe(item));
+
+if (loader && !reducedMotion) {
   const mark = loader.querySelector(".loader-mark");
   const { innerWidth: vw, innerHeight: vh } = window;
   // Tamanho inteiro por pixel, para não abrir frestas entre os quadrados.
@@ -59,9 +98,12 @@ if (loader && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
     }),
   );
 
+  // O conteúdo começa a entrar junto com a saída do loader.
+  loader.addEventListener("animationstart", revealContent);
   loader.addEventListener("animationend", () => loader.remove());
 } else {
   loader?.remove();
+  revealContent();
 }
 
 const toggle = document.querySelector(".menu-toggle");
