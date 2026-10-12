@@ -133,14 +133,6 @@ button:focus-visible {
   letter-spacing: 0.025em;
   margin: 0;
 }
-.status-dot {
-  background: var(--signal);
-  border-radius: 50%;
-  display: inline-block;
-  height: 8px;
-  margin-right: 8px;
-  width: 8px;
-}
 h1,
 h2,
 h3,
@@ -333,30 +325,33 @@ h3 {
 }
 .about {
   border-top: 1px solid var(--line);
+}
+.about-body {
+  align-items: start;
   display: grid;
   gap: 48px;
   grid-template-columns: 1fr 2fr;
 }
-.about-label {
-  color: var(--muted);
+.about-stat {
+  font-family: "Pixelify Sans", monospace;
+  font-size: clamp(2.6rem, 5vw, 4.4rem);
+  line-height: 1;
+  margin: 14px 0 10px;
 }
-.about p {
+.about-caption {
+  color: var(--muted);
+  margin: 0;
+  max-width: 22ch;
+}
+.about-text p {
   color: var(--muted);
   font-size: var(--type-about);
   line-height: 1.55;
-  margin: 36px 0;
+  margin: 0 0 24px;
   max-width: 48ch;
 }
-.expertise-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.expertise-list span {
-  border: 1px solid var(--line);
-  font-family: "Pixelify Sans", monospace;
-  font-size: var(--type-label);
-  padding: 7px 10px;
+.about-text p:last-child {
+  margin-bottom: 0;
 }
 .site-footer {
   background: var(--signal);
@@ -435,7 +430,7 @@ h3 {
   .hero-actions .button {
     flex: 0 0 100%;
   }
-  .about {
+  .about-body {
     display: block;
   }
   .project {
@@ -463,8 +458,8 @@ h3 {
     justify-content: space-between;
     width: 100%;
   }
-  .about-label {
-    margin-bottom: 24px;
+  .about-figure {
+    margin-bottom: 36px;
   }
   .site-footer {
     padding-left: 20px;
