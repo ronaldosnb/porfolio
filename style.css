@@ -125,8 +125,7 @@ button:focus-visible {
   align-self: center;
 }
 .kicker,
-.project-type,
-.about-label {
+.project-type {
   color: var(--muted);
   font-family: "Pixelify Sans", monospace;
   font-size: var(--type-label);
@@ -327,21 +326,33 @@ h3 {
   border-top: 1px solid var(--line);
 }
 .about-body {
-  align-items: start;
+  align-items: center;
   display: grid;
   gap: 48px;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 2fr 1fr;
 }
-.about-stat {
-  font-family: "Pixelify Sans", monospace;
-  font-size: clamp(2.6rem, 5vw, 4.4rem);
-  line-height: 1;
-  margin: 14px 0 10px;
+.about-stats {
+  border-bottom: 1px solid var(--line);
 }
+.about-figure {
+  border-top: 1px solid var(--line);
+  padding: 16px 0;
+}
+.about-label,
 .about-caption {
   color: var(--muted);
+  font-size: var(--type-small);
   margin: 0;
-  max-width: 22ch;
+}
+.about-stat {
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  margin: 8px 0 6px;
+}
+.about-caption {
+  white-space: nowrap;
 }
 .about-text p {
   color: var(--muted);
@@ -352,6 +363,12 @@ h3 {
 }
 .about-text p:last-child {
   margin-bottom: 0;
+}
+.about-text .about-lead {
+  color: var(--paper);
+}
+.about-text .about-note {
+  font-size: var(--type-body);
 }
 .site-footer {
   background: var(--signal);
@@ -493,8 +510,8 @@ h3 {
     justify-content: space-between;
     width: 100%;
   }
-  .about-figure {
-    margin-bottom: 36px;
+  .about-stats {
+    margin-top: 44px;
   }
   .site-footer {
     padding-left: 20px;
