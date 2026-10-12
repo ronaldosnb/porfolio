@@ -17,6 +17,18 @@ nav?.querySelectorAll("a").forEach((link) =>
 
 document.querySelector("#year").textContent = new Date().getFullYear();
 
+const sections = document.querySelectorAll(".section");
+
+const centerSections = () =>
+  sections.forEach((section) => {
+    const gap = (window.innerHeight - section.offsetHeight) / 2;
+    section.style.scrollMarginTop = `${Math.max(0, gap)}px`;
+  });
+
+const sectionObserver = new ResizeObserver(centerSections);
+sections.forEach((section) => sectionObserver.observe(section));
+window.addEventListener("resize", centerSections);
+
 const projectsToggle = document.querySelector(".projects-toggle");
 const moreProjects = document.querySelector("#mais-projetos");
 
