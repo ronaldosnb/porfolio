@@ -181,7 +181,8 @@ if (copyEmail && navigator.clipboard) {
 }
 
 // Link público do currículo (PDF). Enquanto estiver vazio, os links ficam inativos.
-const curriculoUrl = "";
+const curriculoUrl =
+  "https://drive.google.com/file/d/1o2iO0WV33mHuqIc-HI0gpzMDCXkEW2pf/view?usp=sharing";
 
 if (curriculoUrl) {
   document.querySelectorAll(".cv-link").forEach((link) => {
