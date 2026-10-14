@@ -1,7 +1,6 @@
 :root {
   --ink: #0b0d12;
   --panel: #11141b;
-  --panel-raised: #181c25;
   --paper: #eef2f6;
   --muted: #a3abb8;
   --signal: #38d6f5;
@@ -13,13 +12,11 @@
   --type-body: 1rem;
   --type-body-large: 1.06rem;
   --type-nav: 0.76rem;
-  --type-meta: 0.77rem;
-  --type-caption: 0.78rem;
   --type-status: 0.72rem;
   --type-index: 1.05rem;
   --type-display: clamp(3.4rem, 7vw, 6rem);
   --type-role: clamp(1rem, 1.5vw, 1.35rem);
-  --type-heading: clamp(2.5rem, 5vw, 5.35rem);
+  --type-heading: clamp(2.2rem, 4vw, 3.4rem);
   --type-project: clamp(1.5rem, 2.3vw, 2.1rem);
   --type-about: clamp(1.12rem, 1.8vw, 1.5rem);
   --type-email: clamp(1.25rem, 2.5vw, 2.3rem);
@@ -269,7 +266,6 @@ h1 {
   margin-bottom: 44px;
 }
 .section-heading h2 {
-  font-size: clamp(2.2rem, 4vw, 3.4rem);
   margin-left: -0.04em;
 }
 h2 {
@@ -333,10 +329,6 @@ h2 {
   font-size: var(--type-status);
   margin-left: 8px;
   padding: 3px 6px;
-}
-.muted-tag {
-  border-color: var(--line);
-  color: var(--muted);
 }
 h3 {
   font-size: var(--type-project);
@@ -448,7 +440,6 @@ h3 {
   text-transform: uppercase;
 }
 .site-footer h2 {
-  font-size: clamp(2.2rem, 4vw, 3.4rem);
   margin: 20px 0 36px;
 }
 .site-footer a:focus-visible,

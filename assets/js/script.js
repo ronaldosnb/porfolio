@@ -142,6 +142,12 @@ if (loader && !reducedMotion && primeiraVisita) {
 const toggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".site-nav");
 
+const closeMenu = () => {
+  nav.classList.remove("is-open");
+  toggle.setAttribute("aria-expanded", "false");
+  toggle.querySelector("span").textContent = "+";
+};
+
 toggle?.addEventListener("click", () => {
   const open = nav.classList.toggle("is-open");
   toggle.setAttribute("aria-expanded", String(open));
@@ -149,12 +155,19 @@ toggle?.addEventListener("click", () => {
 });
 
 nav?.querySelectorAll("a").forEach((link) =>
-  link.addEventListener("click", () => {
-    nav.classList.remove("is-open");
-    toggle?.setAttribute("aria-expanded", "false");
-    if (toggle) toggle.querySelector("span").textContent = "+";
-  }),
+  link.addEventListener("click", closeMenu),
 );
+
+// Escape fecha o menu e devolve o foco ao botão; clique fora também fecha.
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape" || !nav?.classList.contains("is-open")) return;
+  closeMenu();
+  toggle.focus();
+});
+document.addEventListener("click", (event) => {
+  if (nav?.classList.contains("is-open") && !event.target.closest(".site-header"))
+    closeMenu();
+});
 
 document.querySelector("#year").textContent = new Date().getFullYear();
 
@@ -210,17 +223,5 @@ if (copyEmail && navigator.clipboard) {
       copyEmail.textContent = "Não foi possível copiar";
     }
     setTimeout(() => (copyEmail.textContent = label), 2000);
-  });
-}
-
-// Link público do currículo (PDF). Enquanto estiver vazio, os links ficam inativos.
-const curriculoUrl =
-  "https://drive.google.com/file/d/1o2iO0WV33mHuqIc-HI0gpzMDCXkEW2pf/view?usp=sharing";
-
-if (curriculoUrl) {
-  document.querySelectorAll(".cv-link").forEach((link) => {
-    link.href = curriculoUrl;
-    link.target = "_blank";
-    link.rel = "noreferrer";
   });
 }
