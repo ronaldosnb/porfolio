@@ -4,7 +4,6 @@ description: Portfólio de um desenvolvedor full-stack que transforma operaçõe
 colors:
   ink: "#0b0d12"
   panel: "#11141b"
-  panel-raised: "#181c25"
   paper: "#eef2f6"
   muted: "#a3abb8"
   signal: "#38d6f5"
@@ -14,10 +13,10 @@ colors:
 typography:
   display:
     fontFamily: "Onest, Arial, sans-serif"
-    fontSize: "clamp(3.25rem, 9vw, 7.5rem)"
+    fontSize: "clamp(3.4rem, 7vw, 6rem)"
     fontWeight: 600
     lineHeight: 0.92
-    letterSpacing: "-0.04em"
+    letterSpacing: "-0.05em"
   body:
     fontFamily: "Onest, Arial, sans-serif"
     fontSize: "1rem"
@@ -25,7 +24,7 @@ typography:
     lineHeight: 1.6
   label:
     fontFamily: "Pixelify Sans, monospace"
-    fontSize: "0.85rem"
+    fontSize: "0.82rem"
     fontWeight: 500
     lineHeight: 1
   role:
@@ -35,7 +34,7 @@ typography:
     lineHeight: 1.32
   heading:
     fontFamily: "Onest, Arial, sans-serif"
-    fontSize: "clamp(2.5rem, 5vw, 5.35rem)"
+    fontSize: "clamp(2.2rem, 4vw, 3.4rem)"
     fontWeight: 600
     lineHeight: 0.96
   project:
@@ -43,9 +42,6 @@ typography:
     fontSize: "clamp(1.5rem, 2.3vw, 2.1rem)"
     fontWeight: 600
     lineHeight: 1.08
-rounded:
-  sm: "10px"
-  md: "16px"
 spacing:
   xs: "8px"
   sm: "16px"
@@ -56,12 +52,10 @@ components:
   button-primary:
     backgroundColor: "{colors.signal}"
     textColor: "{colors.signal-ink}"
-    rounded: "{rounded.sm}"
     padding: "14px 20px"
   button-ghost:
     backgroundColor: "transparent"
     textColor: "{colors.paper}"
-    rounded: "{rounded.sm}"
     padding: "14px 20px"
 ---
 
@@ -81,12 +75,11 @@ Neutros azulados evitam o preto puro; o ciano-sinal só marca ação, foco e est
 
 ### Primary
 
-- **Signal Cyan** (#38D6F5): CTA, foco, marcações e o cursor da visualização de sistemas.
+- **Signal Cyan** (#38D6F5): CTA, foco e marcações.
 
 ### Neutral
 
 - **Workbench Ink** (#0B0D12): fundo principal.
-- **Raised Panel** (#181C25): superfícies de case e controles ativos.
 - **Paper Light** (#EEF2F6): texto principal.
 - **Soft Readout** (#A3ABB8): texto de apoio.
 
@@ -102,7 +95,7 @@ O texto é humano e direto; a face pixelada é reservada a coordenadas, rótulos
 
 ## Layout
 
-O primeiro viewport é uma composição de nome em grande escala e a foto de perfil em recorte circular, sem fundo, não um hero convencional. A grade usa uma coluna de informação estreita e uma área ampla para trabalho; no celular ela vira uma sequência única e a foto é ocultada.
+O primeiro viewport é uma composição de nome em grande escala e a foto de perfil em recorte circular, sem fundo, não um hero convencional. A grade usa uma coluna de informação estreita e uma área ampla para trabalho; no celular ela vira uma sequência única e a foto aparece pequena (112px) acima do nome.
 
 ## Elevation & Depth
 
@@ -110,20 +103,20 @@ Profundidade vem de mudança tonal e linhas finas. Não há sombras permanentes;
 
 ## Shapes
 
-Blocos são quase retos, com cantos de 10–16px. Chips são reservados a status; botões têm cantos discretamente arredondados, não formato de pílula.
+Blocos, botões e chips têm cantos retos; só a foto de perfil é circular. Chips são reservados a status e tecnologias.
 
 ## Components
 
 ### Buttons
 
-- **Shape:** cantos de 10px.
+- **Shape:** cantos retos.
 - **Primary:** Signal Cyan sobre Signal Ink.
 - **Hover / Focus:** deslocamento vertical curto e foco visível em Signal Cyan.
 
 ### Linha de projeto
 
-- **Estrutura:** grade de quatro colunas (índice, tipo com nome, descrição, link), igual para todos os projetos, separada por linhas de 1px em Line.
-- **Status:** tag opcional ao lado do tipo (“Online” em Signal Cyan, “Em breve” em cinza).
+- **Estrutura:** grade de quatro colunas (índice, tipo com nome e lista opcional de tecnologias em `.project-stack`, descrição, link), igual para todos os projetos, separada por linhas de 1px em Line.
+- **Status:** tag opcional ao lado do tipo (“Online” em Signal Cyan).
 - **Lista:** três projetos principais visíveis; os demais ficam atrás do botão “Ver mais projetos”, que os expande na própria seção.
 - **Botão de expandir:** contorno de 1px em Line, sem fundo; hover em Signal Cyan.
 
@@ -134,7 +127,7 @@ Blocos são quase retos, com cantos de 10–16px. Chips são reservados a status
 ### Wordmark
 
 - **Forma:** monograma “RB.” desenhado em grade de pixels (`assets/img/logo.svg`, 30 × 14), monocromático, com relevo em três tons do neutro azulado (#F8FAFC, #CBD2DC, #7C8594). Exibido com 28px de altura.
-- **Uso:** somente como assinatura de navegação; a referência pixelada é sutil, nunca uma identidade gamer completa.
+- **Uso:** assinatura de navegação no cabeçalho e logo montada por pixels no loader de entrada; a referência pixelada é sutil, nunca uma identidade gamer completa.
 
 ## Do's and Don'ts
 

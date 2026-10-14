@@ -59,7 +59,25 @@ const revealObserver = new IntersectionObserver(
 const revealContent = () =>
   revealItems.forEach((item) => revealObserver.observe(item));
 
-if (loader && !reducedMotion) {
+// A animação de entrada roda só na primeira visita da sessão; depois a página abre direto.
+let primeiraVisita = true;
+try {
+  primeiraVisita = !sessionStorage.getItem("loader-visto");
+  sessionStorage.setItem("loader-visto", "1");
+} catch {
+  // Sem acesso ao sessionStorage (ex.: modo privado): conta como primeira visita.
+}
+
+if (loader && !reducedMotion && primeiraVisita) {
+  // Enquanto o loader cobre a página, o conteúdo atrás dele não recebe foco.
+  const atras = [
+    document.querySelector("main"),
+    document.querySelector(".site-header"),
+    document.querySelector(".site-footer"),
+    document.querySelector(".skip-link"),
+  ];
+  atras.forEach((el) => el && (el.inert = true));
+
   const mark = loader.querySelector(".loader-mark");
   const { innerWidth: vw, innerHeight: vh } = window;
   // Cada pixel da logo é montado por split × split pixels menores.
@@ -112,7 +130,10 @@ if (loader && !reducedMotion) {
 
   // O conteúdo começa a entrar junto com a saída do loader.
   loader.addEventListener("animationstart", revealContent);
-  loader.addEventListener("animationend", () => loader.remove());
+  loader.addEventListener("animationend", () => {
+    loader.remove();
+    atras.forEach((el) => el && (el.inert = false));
+  });
 } else {
   loader?.remove();
   revealContent();
@@ -121,6 +142,12 @@ if (loader && !reducedMotion) {
 const toggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".site-nav");
 
+const closeMenu = () => {
+  nav.classList.remove("is-open");
+  toggle.setAttribute("aria-expanded", "false");
+  toggle.querySelector("span").textContent = "+";
+};
+
 toggle?.addEventListener("click", () => {
   const open = nav.classList.toggle("is-open");
   toggle.setAttribute("aria-expanded", String(open));
@@ -128,14 +155,28 @@ toggle?.addEventListener("click", () => {
 });
 
 nav?.querySelectorAll("a").forEach((link) =>
-  link.addEventListener("click", () => {
-    nav.classList.remove("is-open");
-    toggle?.setAttribute("aria-expanded", "false");
-    if (toggle) toggle.querySelector("span").textContent = "+";
-  }),
+  link.addEventListener("click", closeMenu),
 );
 
+// Escape fecha o menu e devolve o foco ao botão; clique fora também fecha.
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape" || !nav?.classList.contains("is-open")) return;
+  closeMenu();
+  toggle.focus();
+});
+document.addEventListener("click", (event) => {
+  if (nav?.classList.contains("is-open") && !event.target.closest(".site-header"))
+    closeMenu();
+});
+
 document.querySelector("#year").textContent = new Date().getFullYear();
+
+// Anos de experiência contados a partir do ano em data-desde; o HTML guarda o valor para quem está sem JS.
+const anosExperiencia = document.querySelector("#anos-experiencia");
+if (anosExperiencia) {
+  const anos = new Date().getFullYear() - Number(anosExperiencia.dataset.desde);
+  anosExperiencia.textContent = `${anos} ${anos === 1 ? "ano" : "anos"}`;
+}
 
 const sections = document.querySelectorAll(".section");
 
@@ -189,17 +230,5 @@ if (copyEmail && navigator.clipboard) {
       copyEmail.textContent = "Não foi possível copiar";
     }
     setTimeout(() => (copyEmail.textContent = label), 2000);
-  });
-}
-
-// Link público do currículo (PDF). Enquanto estiver vazio, os links ficam inativos.
-const curriculoUrl =
-  "https://drive.google.com/file/d/1o2iO0WV33mHuqIc-HI0gpzMDCXkEW2pf/view?usp=sharing";
-
-if (curriculoUrl) {
-  document.querySelectorAll(".cv-link").forEach((link) => {
-    link.href = curriculoUrl;
-    link.target = "_blank";
-    link.rel = "noreferrer";
   });
 }
