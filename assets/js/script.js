@@ -59,7 +59,25 @@ const revealObserver = new IntersectionObserver(
 const revealContent = () =>
   revealItems.forEach((item) => revealObserver.observe(item));
 
-if (loader && !reducedMotion) {
+// A animação de entrada roda só na primeira visita da sessão; depois a página abre direto.
+let primeiraVisita = true;
+try {
+  primeiraVisita = !sessionStorage.getItem("loader-visto");
+  sessionStorage.setItem("loader-visto", "1");
+} catch {
+  // Sem acesso ao sessionStorage (ex.: modo privado): conta como primeira visita.
+}
+
+if (loader && !reducedMotion && primeiraVisita) {
+  // Enquanto o loader cobre a página, o conteúdo atrás dele não recebe foco.
+  const atras = [
+    document.querySelector("main"),
+    document.querySelector(".site-header"),
+    document.querySelector(".site-footer"),
+    document.querySelector(".skip-link"),
+  ];
+  atras.forEach((el) => el && (el.inert = true));
+
   const mark = loader.querySelector(".loader-mark");
   const { innerWidth: vw, innerHeight: vh } = window;
   // Cada pixel da logo é montado por split × split pixels menores.
@@ -112,7 +130,10 @@ if (loader && !reducedMotion) {
 
   // O conteúdo começa a entrar junto com a saída do loader.
   loader.addEventListener("animationstart", revealContent);
-  loader.addEventListener("animationend", () => loader.remove());
+  loader.addEventListener("animationend", () => {
+    loader.remove();
+    atras.forEach((el) => el && (el.inert = false));
+  });
 } else {
   loader?.remove();
   revealContent();

@@ -535,12 +535,21 @@ h3 {
     padding: 10px 20px;
   }
   .hero {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
     min-height: auto;
     padding: 75px 0 72px;
   }
+  .hero-copy {
+    align-self: stretch;
+  }
   .hero-photo {
-    display: none;
+    align-self: flex-start;
+    margin: 0 0 28px;
+    max-width: 112px;
+    order: -1;
+    width: 112px;
   }
   .hero-actions .button {
     flex: 0 0 100%;

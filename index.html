@@ -82,10 +82,18 @@
 
         <div class="hero-photo">
           <img
-            src="assets/img/perfil-portifolio.png"
+            src="assets/img/perfil-520.webp"
+            srcset="
+              assets/img/perfil-240.webp   240w,
+              assets/img/perfil-520.webp   520w,
+              assets/img/perfil-1040.webp 1040w
+            "
+            sizes="(max-width: 800px) 112px, min(520px, 45vw)"
             alt="Foto de Ronaldo Batista"
-            width="1085"
-            height="1085"
+            width="520"
+            height="520"
+            fetchpriority="high"
+            decoding="async"
           />
         </div>
       </section>
