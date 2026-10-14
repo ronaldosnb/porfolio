@@ -79,9 +79,9 @@ button:focus-visible {
   width: calc(var(--px) * 30);
 }
 .loader-mark span {
-  height: var(--px);
+  height: var(--sub);
   position: absolute;
-  width: var(--px);
+  width: var(--sub);
 }
 .reveal {
   opacity: 0;

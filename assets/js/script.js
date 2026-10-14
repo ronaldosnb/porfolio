@@ -1,4 +1,4 @@
-// Entrada: os pixels da logo RB. entram de fora da tela e se juntam no centro.
+// Entrada: a logo RB. é montada por pixels menores que entram de fora da tela e se juntam no centro.
 // Mesmo desenho de assets/img/logo.svg (30 × 14); 1, 2 e 3 são os três tons do relevo.
 const loaderPixels = [
   "..111111113....111111113......",
@@ -62,39 +62,47 @@ const revealContent = () =>
 if (loader && !reducedMotion) {
   const mark = loader.querySelector(".loader-mark");
   const { innerWidth: vw, innerHeight: vh } = window;
+  // Cada pixel da logo é montado por split × split pixels menores.
+  const split = 2;
   // Tamanho inteiro por pixel, para não abrir frestas entre os quadrados.
-  const px = Math.max(3, Math.floor(Math.min(vw * 0.6, 420) / 30));
+  const sub = Math.max(2, Math.floor(Math.min(vw * 0.6, 420) / (30 * split)));
+  const px = sub * split;
   mark.style.setProperty("--px", `${px}px`);
+  mark.style.setProperty("--sub", `${sub}px`);
 
   loaderPixels.forEach((row, y) =>
     [...row].forEach((tone, x) => {
       if (tone === ".") return;
-      const pixel = document.createElement("span");
-      pixel.style.background = loaderTones[tone];
-      pixel.style.left = `${x * px}px`;
-      pixel.style.top = `${y * px}px`;
-      mark.append(pixel);
+      for (let i = 0; i < split * split; i++) {
+        const left = x * px + (i % split) * sub;
+        const top = y * px + Math.floor(i / split) * sub;
+        const pixel = document.createElement("span");
+        pixel.style.background = loaderTones[tone];
+        pixel.style.left = `${left}px`;
+        pixel.style.top = `${top}px`;
+        mark.append(pixel);
 
-      // Ponto de partida fora da tela, em direção aleatória, alinhado à grade.
-      const angle = Math.random() * Math.PI * 2;
-      const reach = Math.hypot(vw, vh) * (0.55 + Math.random() * 0.35);
-      const homeX = (x - 15) * px;
-      const homeY = (y - 7) * px;
-      const dx = Math.round((Math.cos(angle) * reach - homeX) / px) * px;
-      const dy = Math.round((Math.sin(angle) * reach - homeY) / px) * px;
+        // Ponto de partida fora da tela, em direção aleatória, alinhado à grade.
+        const angle = Math.random() * Math.PI * 2;
+        const reach = Math.hypot(vw, vh) * (0.55 + Math.random() * 0.35);
+        const homeX = left - 15 * px;
+        const homeY = top - 7 * px;
+        const dx = Math.round((Math.cos(angle) * reach - homeX) / sub) * sub;
+        const dy = Math.round((Math.sin(angle) * reach - homeY) / sub) * sub;
 
-      pixel.animate(
-        [
-          { transform: `translate(${dx}px, ${dy}px)` },
-          { transform: "translate(0, 0)" },
-        ],
-        {
-          duration: 1100,
-          delay: Math.random() * 500,
-          easing: "cubic-bezier(0.2, 0.7, 0.2, 1)",
-          fill: "backwards",
-        },
-      );
+        pixel.animate(
+          [
+            { transform: `translate(${dx}px, ${dy}px)` },
+            { transform: "translate(0, 0)" },
+          ],
+          {
+            duration: 1100,
+            delay: Math.random() * 500,
+            easing: "cubic-bezier(0.2, 0.7, 0.2, 1)",
+            fill: "backwards",
+          },
+        );
+      }
     }),
   );
 
