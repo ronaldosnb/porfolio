@@ -171,6 +171,13 @@ document.addEventListener("click", (event) => {
 
 document.querySelector("#year").textContent = new Date().getFullYear();
 
+// Anos de experiência contados a partir do ano em data-desde; o HTML guarda o valor para quem está sem JS.
+const anosExperiencia = document.querySelector("#anos-experiencia");
+if (anosExperiencia) {
+  const anos = new Date().getFullYear() - Number(anosExperiencia.dataset.desde);
+  anosExperiencia.textContent = `${anos} ${anos === 1 ? "ano" : "anos"}`;
+}
+
 const sections = document.querySelectorAll(".section");
 
 const centerSections = () =>
