@@ -15,7 +15,7 @@
   --type-nav: 0.76rem;
   --type-meta: 0.77rem;
   --type-caption: 0.78rem;
-  --type-status: 0.67rem;
+  --type-status: 0.72rem;
   --type-index: 1.05rem;
   --type-display: clamp(3.4rem, 7vw, 6rem);
   --type-role: clamp(1rem, 1.5vw, 1.35rem);
@@ -198,6 +198,13 @@ h1 {
   font-size: var(--type-body-large);
   max-width: 36ch;
 }
+.hero-stack {
+  color: var(--muted);
+  font-family: "Pixelify Sans", monospace;
+  font-size: var(--type-label);
+  letter-spacing: 0.025em;
+  margin: 0;
+}
 .hero-actions {
   align-items: center;
   display: flex;
@@ -305,6 +312,21 @@ h2 {
 .project-type {
   margin-bottom: 10px;
 }
+.project-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+}
+.project-stack li {
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-family: "Pixelify Sans", monospace;
+  font-size: var(--type-label);
+  padding: 2px 8px;
+}
 .status-tag {
   border: 1px solid var(--signal);
   color: var(--signal);
@@ -394,24 +416,6 @@ h3 {
 }
 .about-caption {
   white-space: nowrap;
-}
-.about-figure-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 0;
-}
-.about-figure-half {
-  padding: 16px 0;
-}
-.about-figure-half + .about-figure-half {
-  border-left: 1px solid var(--line);
-  padding-left: 20px;
-}
-.about-figure-half:first-child {
-  padding-right: 20px;
-}
-.about-figure-half .about-caption {
-  white-space: normal;
 }
 .about-text p {
   color: var(--muted);
@@ -571,6 +575,9 @@ h3 {
   }
   .about-stats {
     margin-top: 44px;
+  }
+  .about-caption {
+    white-space: normal;
   }
   .site-footer {
     padding-left: 20px;
