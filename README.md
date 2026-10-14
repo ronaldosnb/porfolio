@@ -1,6 +1,6 @@
 # Portfólio — Ronaldo Batista
 
-Portfólio de Ronaldo Batista, desenvolvedor full-stack com foco em backend e automação.
+Portfólio de Ronaldo Batista, desenvolvedor full-stack com foco em backend e automação: https://ronaldosnb.dev
 
 ## Stack do site
 
@@ -22,7 +22,7 @@ Depois acesse http://localhost:8000.
 index.html     página única do portfólio
 assets/css/    estilos (style.css)
 assets/js/     comportamento (script.js)
-assets/img/    logo, favicon, ícone e foto de perfil
+assets/img/    logo, favicon, ícones, foto de perfil e imagem de compartilhamento
 docs/          glossário e decisões (ADRs)
 DESIGN.md      sistema de design
 PRODUCT.md     contexto e princípios do produto
