@@ -63,7 +63,7 @@ if (loader && !reducedMotion) {
   const mark = loader.querySelector(".loader-mark");
   const { innerWidth: vw, innerHeight: vh } = window;
   // Cada pixel da logo é montado por split × split pixels menores.
-  const split = 2;
+  const split = 3;
   // Tamanho inteiro por pixel, para não abrir frestas entre os quadrados.
   const sub = Math.max(2, Math.floor(Math.min(vw * 0.6, 420) / (30 * split)));
   const px = sub * split;
@@ -82,9 +82,13 @@ if (loader && !reducedMotion) {
         pixel.style.top = `${top}px`;
         mark.append(pixel);
 
-        // Ponto de partida fora da tela, em direção aleatória, alinhado à grade.
+        // Ponto de partida logo depois da borda da tela, em direção aleatória, alinhado à grade.
         const angle = Math.random() * Math.PI * 2;
-        const reach = Math.hypot(vw, vh) * (0.55 + Math.random() * 0.35);
+        const edge = Math.min(
+          vw / 2 / Math.abs(Math.cos(angle)),
+          vh / 2 / Math.abs(Math.sin(angle)),
+        );
+        const reach = edge + px + Math.random() * Math.min(vw, vh) * 0.12;
         const homeX = left - 15 * px;
         const homeY = top - 7 * px;
         const dx = Math.round((Math.cos(angle) * reach - homeX) / sub) * sub;
@@ -98,7 +102,7 @@ if (loader && !reducedMotion) {
           {
             duration: 1100,
             delay: Math.random() * 500,
-            easing: "cubic-bezier(0.2, 0.7, 0.2, 1)",
+            easing: "cubic-bezier(0.4, 0.1, 0.2, 1)",
             fill: "backwards",
           },
         );
